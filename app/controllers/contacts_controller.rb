@@ -1,25 +1,42 @@
 class ContactsController < ApplicationController
-  # GET    /contacts         contacts#index
+
   def index
     @contacts = Contact.all
   end
 
-  # GET    /contacts/new      contacts#new
   def new
     @contact = Contact.new
   end
 
-  #  POST   /contacts          contacts#create
   def create
     @contact = Contact.new(contact_params)
     #@contact = Contact.new(first_name: params[:contact][:first_name])
     @contact.save
-    redirect_to contacts_url
+    redirect_to "/contacts"
   end
 
-  # GET    /contacts/:id      contacts#show
   def show
     @contact = Contact.find(params[:id])
+  end
+
+  def edit
+    @contact = Contact.find(params[:id])
+  end
+
+  def update
+    @contact = Contact.find(params[:id])
+
+    if @contact.update_attributes(contact_params)
+      redirect_to "/contacts/#{@contact.id}"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @contact = Contact.find(params[:id])
+    @contact.destroy
+    redirect_to "/contacts"
   end
 
   private #Not for action

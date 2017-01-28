@@ -1,0 +1,27 @@
+<h1>Edit Contact</h1>
+
+<p>
+  <%= link_to "Back", @contact %>
+</p>
+
+<%= form_for @contact do |f| %>
+  <p>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :notes %><br>
+    <%= f.text_field :notes %>
+  </p>
+  <p>
+    <%= f.submit "Edit Contact"%>
+  </p>
+<% end %>
